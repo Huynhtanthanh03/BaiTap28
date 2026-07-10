@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập 28 - Tính tổng số chia hết cho 3</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4>Tính Tổng Các Số Chia Hết Cho 3</h4>
+                    </div>
+                    <div class="card-body">
+                        <form onsubmit="handleSubmit(event)">
+                            <div class="form-group">
+                                <label for="startNumber">Số đầu tiên:</label>
+                                <input type="number" id="startNumber" class="form-control" required placeholder="Nhập số bắt đầu...">
+                            </div>
+                            <div class="form-group">
+                                <label for="endNumber">Số cuối cùng:</label>
+                                <input type="number" id="endNumber" class="form-control" required placeholder="Nhập số kết thúc...">
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">Tính tổng</button>
+                        </form>
+                        
+                        <div class="mt-4 alert alert-info d-none" id="resultBox">
+                            <strong>Kết quả:</strong> <span id="txtResult">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            // Ngăn chặn trang web bị tải lại khi bấm Submit
+            event.preventDefault();
+
+            // Lấy giá trị từ 2 ô nhập vào và chuyển thành kiểu số nguyên (int)
+            const start = parseInt(document.getElementById("startNumber").value);
+            const end = parseInt(document.getElementById("endNumber").value);
+
+            let tong = 0;
+
+            // Vòng lặp chạy từ số đầu đến số cuối
+            for (let i = start; i <= end; i++) {
+                // Kiểm tra nếu i chia hết cho 3 (phần dư bằng 0)
+                if (i % 3 === 0) {
+                    tong += i; // Cộng dồn vào biến tong
+                }
+            }
+
+            // 1. In kết quả ra Tab Console của trình duyệt (theo gợi ý console.log của đề bài)
+            console.log("Tổng các số chia hết cho 3 từ " + start + " đến " + end + " là: " + tong);
+
+            // 2. Hiển thị kết quả trực tiếp lên giao diện trình duyệt để dễ chụp hình kết quả
+            const resultBox = document.getElementById("resultBox");
+            const txtResult = document.getElementById("txtResult");
+            
+            txtResult.innerText = "Tổng các số chia hết cho 3 trong khoảng từ " + start + " đến " + end + " là: " + tong;
+            resultBox.classList.remove("d-none"); // Hiển thị khung kết quả
+        }
+    </script>
+
+</body>
+</html>
